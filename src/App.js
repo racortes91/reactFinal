@@ -5,7 +5,7 @@ import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetail
 import { Cart } from './components/Cart/Cart';
 import { BrowserRouter, Routes, Route  } from 'react-router-dom';
 import React from 'react';
-import { CartProvider   } from './context/CartContext';
+import CartProvider from './context/CartContext';
 
 
 
@@ -30,7 +30,3 @@ function App() {
 }
 
 export default App;
-
-// {<ItemListContainer texto='Esteban' />
-//         <ItemDetailContainer />}
-{/* <Cart /> */}

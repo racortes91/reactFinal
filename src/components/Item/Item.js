@@ -1,7 +1,7 @@
 import React, { useContext }  from 'react';
 import './Item.css';
 import { Link } from 'react-router-dom';
-import { useCartContext } from './context/CartContext';
+import { CartContext } from '../../context/CartContext';
 
 const Item = ({info}) => {
  
@@ -13,3 +13,5 @@ const Item = ({info}) => {
         </Link>
     ) 
     }
+
+    export default Item;
