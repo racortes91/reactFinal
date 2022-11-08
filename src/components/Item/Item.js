@@ -10,6 +10,7 @@ const Item = ({info}) => {
         <Link to={`/detalle/${info.id}`} className='juego'>
             <img src={info.img} />
             <p> {info.nombre} </p>
+            <p> ${info.precio} </p>
         </Link>
     ) 
     }
