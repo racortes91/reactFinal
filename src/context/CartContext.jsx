@@ -8,24 +8,18 @@ const CartProvider = ({ children }) => {
 	const [cart, setCart] = useState([]);
 
     const addProduct = (productToAdd, quantity) => {
-        // creamos un nuevo objeto con los datos que recibimos
                     const newObj = {
                       ...productToAdd,
                       quantity
                     }
-        // si el id del nuevo objeto está en el carrito
-                    if(inCart(newObj.id)){
-        // vamos a hacer un map
+                    if(isInCart(newObj.id)){
                         cart.map(el => {
-        // si hay coincidencia entre los id de ambos items solo va a sumar la cantidad
                           if(el.id === newObj.id)  {
                             el.quantity += newObj.quantity
                           }
                           return(el)
                           })
-                  
                       }
-        // sino hay coincidencia, va a agregar el nuevo producto
         else {
                         setCart([...cart, newObj])
                         
@@ -33,7 +27,7 @@ const CartProvider = ({ children }) => {
                     }
 
 const totalPrice = () => {
-    return cart.reduce((prev, act) => prev + act.quantity * act.price, 0);
+    return cart.reduce((prev, act) => prev + act.quantity * act.precio, 0);
 };
 
 const totalProducts = () =>
@@ -59,7 +53,7 @@ return (
             addProduct,
             totalPrice,
             totalProducts,
-            cart,
+            cart
         }}
     >
         {children}
