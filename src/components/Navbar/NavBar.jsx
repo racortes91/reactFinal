@@ -8,7 +8,9 @@ export const NavBar = () => {
         <div className="container">
             <nav className="nav">
                 <div className="nav__brand">
-                    <NavLink className="nav__list" to="/" >Pixel Games </NavLink>
+                    <NavLink className="nav__list" to="/" > 
+                        <img src="../../assets/logo02"></img>
+                    </NavLink>
                 </div>
                 <ul>
                     <li>

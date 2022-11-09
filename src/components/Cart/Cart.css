@@ -1,0 +1,19 @@
+.contendor__cart {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 20px;
+    border: solid 1px;
+    border-color: green;
+    padding: 20px;
+    max-width: 50%;
+    margin: 30px;
+}
+
+.item__cart {
+    display: flex;
+    align-items: center;
+}
+
