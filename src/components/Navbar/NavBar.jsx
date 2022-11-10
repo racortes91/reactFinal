@@ -9,7 +9,7 @@ export const NavBar = () => {
             <nav className="nav">
                 <div className="nav__brand">
                     <NavLink className="nav__list" to="/" > 
-                        <img src="../../assets/logo02"></img>
+                        <img src="gs://ecommerce-35235.appspot.com/logo02.png"></img>
                     </NavLink>
                 </div>
                 <ul>

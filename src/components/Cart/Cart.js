@@ -1,10 +1,9 @@
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import React from 'react';
 import './Cart.css';
 import { useCartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import ItemCart from '../ItemCart/ItemCart';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
-
 
 export const Cart = () => {
   const { cart, totalPrice } = useCartContext();
@@ -13,11 +12,11 @@ export const Cart = () => {
     persona: {
       name: 'Rafael',
       email: 'rafael@hola.cl',
-      phone: '123456789',
+      phone: 123456789,
       direccion: 'Av. Siempre Viva 742, Springfield'
     },
 
-    items: cart.map((product) => ({ id: product.id, title: product.title, price: product.price, quantity: product.quantity, })),
+    items: cart.map((product) => ({ id: product.id, title: product.nombre, price: product.precio, quantity: product.quantity, })),
 		total: totalPrice(),
  };
 
@@ -25,8 +24,7 @@ export const Cart = () => {
       const dataBase = getFirestore();
       const ordenCollection = collection(dataBase, 'orden');
       addDoc(ordenCollection, orden).then(({ id} ) => console.log(id));
-  }
-
+  };
 
 
   if (cart.length === 0) {
@@ -47,8 +45,8 @@ export const Cart = () => {
         ))}
       </div>
       <div className='info__cart'>
-        <button onClick={confirmClick}>Comprar</button>
         <p>total: {totalPrice()}</p>
+        <button onClick={confirmClick}>Comprar</button>
       </div>
     </div>
     
