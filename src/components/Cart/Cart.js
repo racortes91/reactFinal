@@ -4,6 +4,8 @@ import './Cart.css';
 import { useCartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import ItemCart from '../ItemCart/ItemCart';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+
 
 export const Cart = () => {
   const { cart, totalPrice } = useCartContext();
@@ -23,7 +25,8 @@ export const Cart = () => {
   const confirmClick = () => {
       const dataBase = getFirestore();
       const ordenCollection = collection(dataBase, 'orden');
-      addDoc(ordenCollection, orden).then(({ id} ) => console.log(id));
+      addDoc(ordenCollection, orden).then(({ id} ) => Swal.fire(`Gracias por comprar con nosotros, tu identificador es: ${id}`) );
+
   };
 
 

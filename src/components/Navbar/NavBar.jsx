@@ -23,6 +23,9 @@ export const NavBar = () => {
                         <NavLink className="nav__link" to="/categoria/xbox" >Xbox </NavLink>
                     </li>
                     <li>
+                        <NavLink className="nav__link" to="/categoria/accesorios" >Accesorios </NavLink>
+                    </li>
+                    <li>
                         <NavLink className="nav__link" to="/cart" > 
                             <CartWidget />
                         </NavLink>
