@@ -10,32 +10,36 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 export const Cart = () => {
   const { cart, totalPrice } = useCartContext();
 
+    let nombreUsuario = document.getElementById('nombreForm');
+    let direcUsuario = document.getElementById('direcForm');
+    let phoneUsuario = document.getElementById('telefonoForm');
 
-  const persona = [
-    {
-      name: document.getElementById('nombreForm'),
-      direccion: document.getElementById('direcForm'),
-      phone: document.getElementById('telefonoForm')
-    }
-  
-  ];
 
-  const orden ={
+    const buyer = {
+      name: nombreUsuario,
+      direction: direcUsuario,
+      phone: phoneUsuario
+    };
+
+    const orden = {
     
-    items: cart.map((product) => ({ id: product.id, title: product.nombre, price: product.precio, quantity: product.quantity, })),
-		total: totalPrice(),
- };
+      items: cart.map((product) => ({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        quantity: product.quantity,
+      })),
+    };
 
   const confirmClick = () => {
-
-    if (persona === true) {
+    if (nombreUsuario === buyer.name && direcUsuario === buyer.direcion && phoneUsuario === buyer.phone) {
       const dataBase = getFirestore();
       const ordenCollection = collection(dataBase, 'orden');
-      addDoc(ordenCollection, orden).then(({ id} ) => Swal.fire(`Gracias por comprar con nosotros ${persona.name}, tu compra será despachada a ${persona.direccion}. Tu identificador es: ${id}`) );
+      addDoc(ordenCollection, orden).then(({ id} ) => Swal.fire(`Gracias por comprar con nosotros ${buyer.name}, tu compra será despachada a ${buyer.direction}. Tu identificador es: ${id}`) );
+
     }else {
       Swal.fire(`rellena los datos del form para continuar la compra`)
     }
-      
 
   };
 
@@ -69,9 +73,9 @@ export const Cart = () => {
         <div className='info__cart'>
           <p>total: {totalPrice()}</p>
           <button onClick={cleanCart}>Vaciar Carrito</button>
-          <form>
+          <form className='form'>
             <label>Nombre</label>
-            <input type="text" id="nombreForm"></input>
+            <input type="text" id="nombreForm" ></input>
             <label>Dirección</label>
             <input type="text" id="direcForm"></input>
             <label>Teléfono</label>
