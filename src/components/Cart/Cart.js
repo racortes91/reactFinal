@@ -8,18 +8,20 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 
 export const Cart = () => {
+
   const { cart, totalPrice } = useCartContext();
 
-    let nombreUsuario = document.getElementById('nombreForm');
-    let direcUsuario = document.getElementById('direcForm');
-    let phoneUsuario = document.getElementById('telefonoForm');
+    // let nombreUsuario = document.getElementById('nombreForm');
+    // let direcUsuario = document.getElementById('direcForm');
+    // let phoneUsuario = document.getElementById('telefonoForm');
 
 
-    const buyer = {
-      name: nombreUsuario,
-      direction: direcUsuario,
-      phone: phoneUsuario
-    };
+    const buyer = [{
+      name: document.getElementById('nombreForm'),
+      direction: document.getElementById('direcForm'),
+      phone: document.getElementById('telefonoForm')
+    }
+    ];
 
     const orden = {
     
@@ -31,18 +33,17 @@ export const Cart = () => {
       })),
     };
 
-  const confirmClick = () => {
-    if (nombreUsuario === buyer.name && direcUsuario === buyer.direcion && phoneUsuario === buyer.phone) {
+  const confirmClick = (e) => {
+    e.preventDefault();
+    if (!buyer.name || !buyer.direction || !buyer.phone ) { 
+      Swal.fire(`rellena los datos del form para continuar la compra`);
+      console.log(buyer.name);
+    }else {
       const dataBase = getFirestore();
       const ordenCollection = collection(dataBase, 'orden');
       addDoc(ordenCollection, orden).then(({ id} ) => Swal.fire(`Gracias por comprar con nosotros ${buyer.name}, tu compra será despachada a ${buyer.direction}. Tu identificador es: ${id}`) );
-
-    }else {
-      Swal.fire(`rellena los datos del form para continuar la compra`)
     }
-
   };
-
 
   if (cart.length === 0) {
     return (
@@ -54,13 +55,10 @@ export const Cart = () => {
   }
 
   const cleanCart = () => {
-    console.log('borrar carrito');
     if (cart.length >= 0) {
       window.location.href="http://localhost:3000"
     }
-   
   }
-
 
   return (
     <>
